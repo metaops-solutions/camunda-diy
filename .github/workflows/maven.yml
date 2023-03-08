@@ -41,7 +41,7 @@ jobs:
 
     - name: docker login
       if: github.event_name != 'pull_request'
-      run: docker login $DOCKER_REGISTRY -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD
+      run: docker login ${{ env.DOCKER_REGISTRY}} -u ${{ env.DOCKER_REGISTRY_USER }} -p ${{ env.DOCKER_REGISTRY_PASSWORD }}
 
     - name: docker push
       if: github.event_name != 'pull_request'
