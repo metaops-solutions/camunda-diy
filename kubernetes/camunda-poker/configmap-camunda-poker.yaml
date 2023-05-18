@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  script: |-
+    #!/bin/bash
+    i=0
+    while true
+    do
+      sleep .$[ ( $RANDOM % 4 ) + 1 ]s
+      curl -H "Content-Type: application/json"  http://camunda-diy-service.camunda-diy.svc:8090/engine-rest/process-definition/key/Process_1xuy2x4/start -X POST -d '{"variables": {"amount": {"value":555,"type":"integer"}, "item": {"value":"item-xyz"} } }'
+    done
+metadata:
+  name: camunda-poker-config
+  labels:
+    name: camunda-poker-config
+  namespace: camunda-diy
+  
