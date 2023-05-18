@@ -11,5 +11,5 @@ COPY scripts/run.sh /opt/app/
 RUN chmod 0755 /opt/app/run.sh
 RUN chown -R camunda:camunda /opt/app
 USER camunda
-ENTRYPOINT ["/opt/run.sh"]
+ENTRYPOINT ["/opt/app/run.sh"]
 
