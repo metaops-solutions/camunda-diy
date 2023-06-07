@@ -1,4 +1,4 @@
-package org.camunda.bpm.getstarted.self-service-restaurant;
+package org.camunda.bpm.getstarted.selfServiceRestaurant;
 
 import java.util.logging.Logger;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
