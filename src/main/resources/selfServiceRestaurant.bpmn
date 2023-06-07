@@ -18,7 +18,6 @@
   <bpmn:process id="Process_1" isExecutable="false">
     <bpmn:startEvent id="StartEvent_1jrp9jr" name="Hunger noticed">
       <bpmn:outgoing>SequenceFlow_0zyokrw</bpmn:outgoing>
-      <bpmn:conditionalEventDefinition />
     </bpmn:startEvent>
     <bpmn:task id="Task_1kt8dzo" name="Enter restaurant">
       <bpmn:incoming>SequenceFlow_0zyokrw</bpmn:incoming>
@@ -34,7 +33,6 @@
     <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_1nu2fvu" name="wait for turn">
       <bpmn:incoming>SequenceFlow_01zmlbv</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1y1wgan</bpmn:outgoing>
-      <bpmn:conditionalEventDefinition />
     </bpmn:intermediateCatchEvent>
     <bpmn:task id="Task_0a2rm9v" name="Place order">
       <bpmn:incoming>SequenceFlow_1y1wgan</bpmn:incoming>
