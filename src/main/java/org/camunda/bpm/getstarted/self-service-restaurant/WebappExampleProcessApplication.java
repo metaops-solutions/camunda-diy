@@ -1,4 +1,4 @@
-package org.camunda.bpm.getstarted.loanapproval;
+package org.camunda.bpm.getstarted.self-service-restaurant;
 
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.spring.boot.starter.event.PostDeployEvent;
@@ -21,6 +21,6 @@ public class WebappExampleProcessApplication {
 
     @EventListener
     public void processPostDeploy(PostDeployEvent event) {
-        runtimeService.startProcessInstanceByKey("loanApproval");
+        runtimeService.startProcessInstanceByKey("self-service-restaurant");
     }
 }
