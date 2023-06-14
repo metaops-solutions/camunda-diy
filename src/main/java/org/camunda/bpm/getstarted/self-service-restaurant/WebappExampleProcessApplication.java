@@ -19,6 +19,7 @@ public class WebappExampleProcessApplication {
     @Autowired
     private RuntimeService runtimeService;
 
+
     @EventListener
     public void processPostDeploy(PostDeployEvent event) {
         runtimeService.startProcessInstanceByKey("selfServiceRestaurant");
