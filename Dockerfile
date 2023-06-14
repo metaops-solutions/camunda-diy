@@ -1,5 +1,5 @@
 FROM openjdk:17.0-jdk
-ARG JAR_FILE=target/loan-approval-spring-boot-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/self-service-restaurant-0.0.1-SNAPSHOT.jar
 
 RUN groupadd -r camunda -g 433 && \
     useradd -u 431 -r -g camunda -s /sbin/nologin -c "Docker image user" camunda
