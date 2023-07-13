@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+CAMUDA_HOST="${CAMUNDA_HOST:=localhost}"
 
 
 size_of_the_queue=0 # start from 0 second queue
@@ -8,9 +9,10 @@ MEAL_PREP_TIME=0 # no meal at the start
 MAX_WAITING_CUSTOMERS=10
 
 
-CAMUNDA_REST_URL="http://localhost:8090/engine-rest"
+CAMUNDA_REST_URL="http://${CAMUNDA_HOST}:8090/engine-rest"
 CURL='curl -s -H "Content-Type: application/json"'
-for NN in {0..100000}; do
+NN=0
+while true; do
 	customer="customer${NN}"
 	WAITING_CUSTOMERS=`jobs -r | wc -l | tr -d " "`
         while [[ $WAITING_CUSTOMERS -gt $MAX_WAITING_CUSTOMERS ]]; do
@@ -45,5 +47,5 @@ for NN in {0..100000}; do
 		-X POST -d "{\"messageName\" : \"Message_employee_meal_ready\", \"businessKey\" : \"${customer}\"}" \
 		echo "CUSTOMER: ${customer}  --- Food ready and journey complete"
 	) &
-         
+        let NN=$NN+1 
 done
