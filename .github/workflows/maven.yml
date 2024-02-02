@@ -21,7 +21,7 @@ env:
 jobs:
   build:
 
-    runs-on: self-hosted  
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -43,7 +43,7 @@ jobs:
 
     - name: docker login
       if: github.event_name != 'pull_request'
-      run: docker login $DOCKER_REGISTRY -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD
+      run: docker login $DOCKER_REGISTRY -u $DOCKER_REGISTRY_USER -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
     - name: docker push
       if: github.event_name != 'pull_request'
