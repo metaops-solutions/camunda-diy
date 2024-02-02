@@ -6,6 +6,7 @@ on: workflow_dispatch
 
 env:
   IMAGE_NAME: metaops/camunda-diy-poker
+  DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
 
 jobs:
@@ -21,7 +22,7 @@ jobs:
 
     - name: docker login
       if: github.event_name != 'pull_request'
-      run: docker login $DOCKER_REGISTRY -u $DOCKER_REGISTRY_USER -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+      run: docker login $DOCKER_REGISTRY -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD
 
     - name: docker push
       if: github.event_name != 'pull_request'
