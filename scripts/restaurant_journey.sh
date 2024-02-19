@@ -36,6 +36,7 @@ while true; do
 
 	echo "CUSTOMER: ${customer}  --- Getting task id which should be completed manually"
 	TASK_ID=`curl -s -H "Content-Type: application/json" "$CAMUNDA_REST_URL/task?processInstanceId=${PROCESS_INSTANCE_ID}&name=wait+for+turn"| jq -r '.[0].id'`
+	sleep $((RANDOM%100))
 	echo "CUSTOMER: ${customer}  --- Completing task ${TASK_ID}"
 	curl -s -H "Content-Type: application/json" "$CAMUNDA_REST_URL/task/${TASK_ID}/complete" -X POST
 	echo "CUSTOMER: ${customer}  --- placing an order - takes 30 seconds"
