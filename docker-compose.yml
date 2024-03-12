@@ -12,9 +12,7 @@ services:
       POSTGRES_DB: workflow
 
   java-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: metaops/camunda-diy:latest
     depends_on:
       - postgres
     ports:
