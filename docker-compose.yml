@@ -10,11 +10,17 @@ services:
       POSTGRES_USER: camunda
       POSTGRES_PASSWORD: camunda
       POSTGRES_DB: workflow
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U camunda -d workflow'"]
+      interval: 10s
+      timeout: 3s
+      retries: 3    
 
   java-app:
     image: metaops/camunda-diy:latest
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     ports:
       - 8090:8090
     environment:
@@ -23,6 +29,11 @@ services:
       DB_NAME: workflow
       DB_USER: camunda
       DB_PASSWORD: camunda
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'curl -I http://localhost:8090/engine-rest/history/activity-instance'"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
   
   camunda-poker:
     image: spotify/alpine
@@ -30,6 +41,7 @@ services:
     - ./scripts/restaurant_journey.sh:/opt/restaurant_journey.sh
     command: bash -c "apk update && apk add jq && /opt/restaurant_journey.sh"
     depends_on:
-      - java-app
+      java-app:
+        condition: service_healthy
     environment:
       CAMUNDA_HOST: java-app
